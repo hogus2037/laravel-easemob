@@ -1,0 +1,30 @@
+{
+    "name": "hogus/laravel-easemob",
+    "description": "通讯服务端SDK集成",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "hogus",
+            "email": "hogus2037@gmail.com"
+        }
+    ],
+    "require": {
+        "php" : ">=5.6",
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Hogus\\LaravelEasemob\\": "src"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Hogus\\LaravelEasemob\\EasemobServiceProvider"
+            ],
+            "aliases": {
+                "Easemob": "Hogus\\LaravelEasemob\\Facade\\Easemob"
+            }
+        }
+    }
+}

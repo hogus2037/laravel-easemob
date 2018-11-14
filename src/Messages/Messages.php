@@ -171,8 +171,9 @@ abstract class Messages
     }
 
     /**
-     * @return array
+     * @return array|\Hogus\LaravelEasemob\StreamResponse|string
      * @throws InvalidArgumentException
+     * @throws \Hogus\LaravelEasemob\Exceptions\GatewayErrorException
      */
     public function send()
     {
@@ -193,14 +194,15 @@ abstract class Messages
             $options = array_merge($options, ['ext' => $this->getExt()]);
         }
 
-        return $options;
+        return $this->easemob->sendMessages($options);
 
     }
 
     /**
      * @param array $data
-     * @return array
+     * @return array|\Hogus\LaravelEasemob\StreamResponse|string
      * @throws InvalidArgumentException
+     * @throws \Hogus\LaravelEasemob\Exceptions\GatewayErrorException
      */
     public function sendData(array $data)
     {

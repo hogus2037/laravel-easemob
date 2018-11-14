@@ -77,6 +77,23 @@ class Easemob
         return new $class($this);
     }
 
+    /**
+     * 发送 请求
+     *
+     * @param array $options
+     * @return array|StreamResponse|string
+     * @throws GatewayErrorException
+     */
+    public function sendMessages(array  $options)
+    {
+        try {
+            $response = $this->postJson('messages', $options, $this->getAuthorization());
+        } catch (\Exception $e) {
+            throw new GatewayErrorException($e->getMessage(), $e->getCode(), $e);
+        }
+
+        return $response;
+    }
 
     /**
      * 文件上传
@@ -143,6 +160,16 @@ class Easemob
         } catch (\Exception $e) {
             throw new GatewayErrorException($e->getMessage(), $e->getCode(), $e);
         }
+
+        return $response;
+    }
+
+    public function getChatRecord($time)
+    {
+        $header = [
+            'Content-Type' => 'application/json'
+        ];
+        $response = $this->get('chatmessages/'.$time, '', $header+$this->getAuthorization());
 
         return $response;
     }
